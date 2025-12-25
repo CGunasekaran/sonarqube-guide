@@ -25,7 +25,8 @@ export default function TutorialsPage() {
     {
       id: "getting-started",
       title: "Getting Started with SonarQube",
-      description: "Learn how to install and configure SonarQube for the first time. This comprehensive guide covers installation, basic setup, and your first code analysis.",
+      description:
+        "Learn how to install and configure SonarQube for the first time. This comprehensive guide covers installation, basic setup, and your first code analysis.",
       duration: "15:30",
       category: "Getting Started",
       level: "Beginner",
@@ -38,7 +39,8 @@ export default function TutorialsPage() {
     {
       id: "quality-gates",
       title: "Understanding Quality Gates",
-      description: "Deep dive into quality gates - how to configure them, set thresholds, and enforce code quality standards across your projects.",
+      description:
+        "Deep dive into quality gates - how to configure them, set thresholds, and enforce code quality standards across your projects.",
       duration: "12:45",
       category: "Configuration",
       level: "Intermediate",
@@ -51,7 +53,8 @@ export default function TutorialsPage() {
     {
       id: "ci-cd-integration",
       title: "CI/CD Integration with Jenkins",
-      description: "Step-by-step tutorial on integrating SonarQube with Jenkins. Learn how to automate code analysis in your CI/CD pipeline.",
+      description:
+        "Step-by-step tutorial on integrating SonarQube with Jenkins. Learn how to automate code analysis in your CI/CD pipeline.",
       duration: "18:20",
       category: "Integration",
       level: "Intermediate",
@@ -64,7 +67,8 @@ export default function TutorialsPage() {
     {
       id: "security-analysis",
       title: "Security Vulnerability Detection",
-      description: "Learn how SonarQube detects security vulnerabilities and how to interpret and fix security hotspots in your codebase.",
+      description:
+        "Learn how SonarQube detects security vulnerabilities and how to interpret and fix security hotspots in your codebase.",
       duration: "20:15",
       category: "Security",
       level: "Advanced",
@@ -77,7 +81,8 @@ export default function TutorialsPage() {
     {
       id: "custom-rules",
       title: "Creating Custom Rules",
-      description: "Advanced tutorial on creating custom SonarQube rules. Learn how to write rules specific to your organization's coding standards.",
+      description:
+        "Advanced tutorial on creating custom SonarQube rules. Learn how to write rules specific to your organization's coding standards.",
       duration: "25:40",
       category: "Advanced",
       level: "Advanced",
@@ -90,7 +95,8 @@ export default function TutorialsPage() {
     {
       id: "code-coverage",
       title: "Maximizing Code Coverage",
-      description: "Best practices for improving code coverage. Learn how to configure coverage reports and interpret coverage metrics.",
+      description:
+        "Best practices for improving code coverage. Learn how to configure coverage reports and interpret coverage metrics.",
       duration: "14:25",
       category: "Best Practices",
       level: "Intermediate",
@@ -103,7 +109,8 @@ export default function TutorialsPage() {
     {
       id: "github-actions",
       title: "SonarQube with GitHub Actions",
-      description: "Integrate SonarQube analysis into your GitHub Actions workflow. Includes pull request decoration and quality gate checks.",
+      description:
+        "Integrate SonarQube analysis into your GitHub Actions workflow. Includes pull request decoration and quality gate checks.",
       duration: "16:10",
       category: "Integration",
       level: "Beginner",
@@ -116,7 +123,8 @@ export default function TutorialsPage() {
     {
       id: "performance-tuning",
       title: "Performance Tuning and Optimization",
-      description: "Optimize your SonarQube server for large codebases. Learn about memory management, database tuning, and scaling strategies.",
+      description:
+        "Optimize your SonarQube server for large codebases. Learn about memory management, database tuning, and scaling strategies.",
       duration: "22:30",
       category: "Performance",
       level: "Advanced",
@@ -129,7 +137,8 @@ export default function TutorialsPage() {
     {
       id: "quality-profiles",
       title: "Managing Quality Profiles",
-      description: "Learn how to create and manage quality profiles for different languages. Customize rules to match your team's standards.",
+      description:
+        "Learn how to create and manage quality profiles for different languages. Customize rules to match your team's standards.",
       duration: "13:50",
       category: "Configuration",
       level: "Beginner",
@@ -142,7 +151,8 @@ export default function TutorialsPage() {
     {
       id: "branch-analysis",
       title: "Branch and Pull Request Analysis",
-      description: "Configure branch analysis and pull request decoration. Learn how to analyze feature branches and provide feedback on PRs.",
+      description:
+        "Configure branch analysis and pull request decoration. Learn how to analyze feature branches and provide feedback on PRs.",
       duration: "17:45",
       category: "Advanced",
       level: "Intermediate",
@@ -155,7 +165,8 @@ export default function TutorialsPage() {
     {
       id: "troubleshooting",
       title: "Troubleshooting Common Issues",
-      description: "Solutions to the most common SonarQube problems. Covers scanner issues, connection problems, and performance bottlenecks.",
+      description:
+        "Solutions to the most common SonarQube problems. Covers scanner issues, connection problems, and performance bottlenecks.",
       duration: "19:20",
       category: "Troubleshooting",
       level: "Intermediate",
@@ -168,7 +179,8 @@ export default function TutorialsPage() {
     {
       id: "docker-deployment",
       title: "Deploying SonarQube with Docker",
-      description: "Complete guide to deploying SonarQube using Docker and Docker Compose. Includes PostgreSQL setup and volume management.",
+      description:
+        "Complete guide to deploying SonarQube using Docker and Docker Compose. Includes PostgreSQL setup and volume management.",
       duration: "21:15",
       category: "Getting Started",
       level: "Intermediate",
@@ -180,12 +192,14 @@ export default function TutorialsPage() {
     },
   ];
 
-  const categories = ["all", ...new Set(tutorials.map(t => t.category))];
+  const categories = ["all", ...new Set(tutorials.map((t) => t.category))];
   const levels = ["all", "Beginner", "Intermediate", "Advanced"];
 
-  const filteredTutorials = tutorials.filter(tutorial => {
-    const matchesCategory = selectedCategory === "all" || tutorial.category === selectedCategory;
-    const matchesLevel = selectedLevel === "all" || tutorial.level === selectedLevel;
+  const filteredTutorials = tutorials.filter((tutorial) => {
+    const matchesCategory =
+      selectedCategory === "all" || tutorial.category === selectedCategory;
+    const matchesLevel =
+      selectedLevel === "all" || tutorial.level === selectedLevel;
     return matchesCategory && matchesLevel;
   });
 
@@ -230,7 +244,7 @@ export default function TutorialsPage() {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                {categories.map(cat => (
+                {categories.map((cat) => (
                   <option key={cat} value={cat}>
                     {cat === "all" ? "All Categories" : cat}
                   </option>
@@ -246,7 +260,7 @@ export default function TutorialsPage() {
                 onChange={(e) => setSelectedLevel(e.target.value)}
                 className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
               >
-                {levels.map(level => (
+                {levels.map((level) => (
                   <option key={level} value={level}>
                     {level === "all" ? "All Levels" : level}
                   </option>
@@ -256,7 +270,13 @@ export default function TutorialsPage() {
           </div>
           <div className="mt-4 flex items-center gap-2 text-sm text-slate-600">
             <Tag className="w-4 h-4" />
-            <span>Showing <span className="font-semibold text-slate-900">{filteredTutorials.length}</span> tutorial{filteredTutorials.length !== 1 ? 's' : ''}</span>
+            <span>
+              Showing{" "}
+              <span className="font-semibold text-slate-900">
+                {filteredTutorials.length}
+              </span>{" "}
+              tutorial{filteredTutorials.length !== 1 ? "s" : ""}
+            </span>
           </div>
         </div>
 
@@ -284,7 +304,11 @@ export default function TutorialsPage() {
               {/* Content */}
               <div className="p-6">
                 <div className="flex items-center gap-2 mb-3">
-                  <span className={`px-2 py-1 rounded-full text-xs font-semibold ${getLevelColor(tutorial.level)}`}>
+                  <span
+                    className={`px-2 py-1 rounded-full text-xs font-semibold ${getLevelColor(
+                      tutorial.level
+                    )}`}
+                  >
                     {tutorial.level}
                   </span>
                   <span className="px-2 py-1 bg-white/50 rounded-full text-xs font-semibold text-slate-700">
@@ -295,7 +319,7 @@ export default function TutorialsPage() {
                 <h3 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-blue-600 transition-colors">
                   {tutorial.title}
                 </h3>
-                
+
                 <p className="text-slate-700 text-sm mb-4 line-clamp-3">
                   {tutorial.description}
                 </p>
@@ -314,7 +338,7 @@ export default function TutorialsPage() {
 
                 {/* Watch Button */}
                 <button
-                  onClick={() => window.open(tutorial.videoUrl, '_blank')}
+                  onClick={() => window.open(tutorial.videoUrl, "_blank")}
                   className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-2 px-4 rounded-lg font-semibold hover:from-blue-700 hover:to-purple-700 transition-all flex items-center justify-center gap-2"
                 >
                   <Play className="w-4 h-4" />
@@ -329,7 +353,9 @@ export default function TutorialsPage() {
         {filteredTutorials.length === 0 && (
           <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-12 text-center border border-slate-200">
             <Video className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-slate-900 mb-2">No Tutorials Found</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              No Tutorials Found
+            </h3>
             <p className="text-slate-600">
               Try adjusting your filters to see more tutorials
             </p>
@@ -338,7 +364,9 @@ export default function TutorialsPage() {
 
         {/* Learning Path */}
         <div className="mt-12 bg-gradient-to-r from-indigo-600 to-purple-600 rounded-xl p-8 text-white shadow-lg">
-          <h2 className="text-2xl font-bold mb-4">🎓 Suggested Learning Path</h2>
+          <h2 className="text-2xl font-bold mb-4">
+            🎓 Suggested Learning Path
+          </h2>
           <p className="text-indigo-100 mb-6">
             New to SonarQube? Follow this recommended learning path:
           </p>
@@ -351,7 +379,9 @@ export default function TutorialsPage() {
             <div className="bg-white/10 rounded-lg p-4">
               <div className="text-2xl mb-2">2️⃣</div>
               <h3 className="font-semibold mb-1">Configuration</h3>
-              <p className="text-sm text-indigo-100">Quality gates & profiles</p>
+              <p className="text-sm text-indigo-100">
+                Quality gates & profiles
+              </p>
             </div>
             <div className="bg-white/10 rounded-lg p-4">
               <div className="text-2xl mb-2">3️⃣</div>

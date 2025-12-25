@@ -17,6 +17,8 @@ export default function Header() {
     { name: "Best Practices", href: "/best-practices" },
     { name: "Tutorials", href: "/tutorials" },
     { name: "Demo", href: "/demo" },
+    { name: "Config Generator", href: "/config-generator" },
+    { name: "Performance", href: "/performance" },
     { name: "Troubleshooting", href: "/troubleshooting" },
   ];
 
