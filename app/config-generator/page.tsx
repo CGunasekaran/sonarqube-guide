@@ -20,7 +20,9 @@ export default function ConfigGeneratorPage() {
   const [projectName, setProjectName] = useState("My Project");
   const [sourceDir, setSourceDir] = useState("src");
   const [testDir, setTestDir] = useState("test");
-  const [exclusions, setExclusions] = useState("**/node_modules/**,**/dist/**,**/build/**");
+  const [exclusions, setExclusions] = useState(
+    "**/node_modules/**,**/dist/**,**/build/**"
+  );
   const [coveragePath, setCoveragePath] = useState("coverage/lcov.info");
   const [encoding, setEncoding] = useState("UTF-8");
   const [verbose, setVerbose] = useState(false);
@@ -30,13 +32,15 @@ export default function ConfigGeneratorPage() {
     javascript: {
       name: "JavaScript/Node.js",
       defaultCoverage: "coverage/lcov.info",
-      defaultExclusions: "**/node_modules/**,**/dist/**,**/build/**,**/*.test.js,**/*.spec.js",
+      defaultExclusions:
+        "**/node_modules/**,**/dist/**,**/build/**,**/*.test.js,**/*.spec.js",
       defaultTestDir: "test",
     },
     typescript: {
       name: "TypeScript",
       defaultCoverage: "coverage/lcov.info",
-      defaultExclusions: "**/node_modules/**,**/dist/**,**/build/**,**/*.test.ts,**/*.spec.ts",
+      defaultExclusions:
+        "**/node_modules/**,**/dist/**,**/build/**,**/*.test.ts,**/*.spec.ts",
       defaultTestDir: "test",
     },
     java: {
@@ -60,7 +64,8 @@ export default function ConfigGeneratorPage() {
     react: {
       name: "React",
       defaultCoverage: "coverage/lcov.info",
-      defaultExclusions: "**/node_modules/**,**/build/**,**/public/**,**/*.test.jsx,**/*.spec.jsx",
+      defaultExclusions:
+        "**/node_modules/**,**/build/**,**/public/**,**/*.test.jsx,**/*.spec.jsx",
       defaultTestDir: "src/__tests__",
     },
   };
@@ -68,7 +73,9 @@ export default function ConfigGeneratorPage() {
   const generateConfig = () => {
     const lines = [
       "# SonarQube Configuration",
-      `# Generated for ${projectTypes[projectType as keyof typeof projectTypes].name}`,
+      `# Generated for ${
+        projectTypes[projectType as keyof typeof projectTypes].name
+      }`,
       "",
       "# Project identification",
       `sonar.projectKey=${projectKey}`,
@@ -83,7 +90,9 @@ export default function ConfigGeneratorPage() {
       `sonar.exclusions=${exclusions}`,
       "",
       "# Coverage",
-      projectType === "javascript" || projectType === "typescript" || projectType === "react"
+      projectType === "javascript" ||
+      projectType === "typescript" ||
+      projectType === "react"
         ? `sonar.javascript.lcov.reportPaths=${coveragePath}`
         : projectType === "java"
         ? `sonar.coverage.jacoco.xmlReportPaths=${coveragePath}`
@@ -98,7 +107,11 @@ export default function ConfigGeneratorPage() {
       lines.push("# Verbose logging", "sonar.verbose=true", "");
     }
 
-    if (projectType === "javascript" || projectType === "typescript" || projectType === "react") {
+    if (
+      projectType === "javascript" ||
+      projectType === "typescript" ||
+      projectType === "react"
+    ) {
       lines.push(
         "# JavaScript/TypeScript specific",
         "sonar.javascript.node.maxspace=4096",
@@ -119,7 +132,11 @@ export default function ConfigGeneratorPage() {
   };
 
   const generateCIConfig = () => {
-    if (projectType === "javascript" || projectType === "typescript" || projectType === "react") {
+    if (
+      projectType === "javascript" ||
+      projectType === "typescript" ||
+      projectType === "react"
+    ) {
       return `# GitHub Actions Example
 name: SonarQube Analysis
 on:
@@ -229,8 +246,10 @@ jobs:
         <div className="grid lg:grid-cols-2 gap-8">
           {/* Configuration Form */}
           <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-8 border border-slate-200">
-            <h2 className="text-2xl font-bold text-slate-900 mb-6">Project Settings</h2>
-            
+            <h2 className="text-2xl font-bold text-slate-900 mb-6">
+              Project Settings
+            </h2>
+
             <div className="space-y-6">
               {/* Project Type */}
               <div>
@@ -242,7 +261,8 @@ jobs:
                   onChange={(e) => {
                     const type = e.target.value;
                     setProjectType(type);
-                    const typeConfig = projectTypes[type as keyof typeof projectTypes];
+                    const typeConfig =
+                      projectTypes[type as keyof typeof projectTypes];
                     setCoveragePath(typeConfig.defaultCoverage);
                     setExclusions(typeConfig.defaultExclusions);
                     setTestDir(typeConfig.defaultTestDir);
@@ -283,7 +303,9 @@ jobs:
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   placeholder="my-project"
                 />
-                <p className="text-xs text-slate-500 mt-1">Unique identifier for your project</p>
+                <p className="text-xs text-slate-500 mt-1">
+                  Unique identifier for your project
+                </p>
               </div>
 
               {/* Project Name */}
@@ -340,7 +362,9 @@ jobs:
                   className="w-full px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent"
                   placeholder="**/node_modules/**"
                 />
-                <p className="text-xs text-slate-500 mt-1">Comma-separated patterns</p>
+                <p className="text-xs text-slate-500 mt-1">
+                  Comma-separated patterns
+                </p>
               </div>
 
               {/* Coverage Report Path */}
@@ -366,7 +390,10 @@ jobs:
                   onChange={(e) => setVerbose(e.target.checked)}
                   className="w-4 h-4 text-green-600 border-slate-300 rounded focus:ring-2 focus:ring-green-500"
                 />
-                <label htmlFor="verbose" className="text-sm font-medium text-slate-700">
+                <label
+                  htmlFor="verbose"
+                  className="text-sm font-medium text-slate-700"
+                >
                   Enable verbose logging
                 </label>
               </div>
@@ -378,7 +405,9 @@ jobs:
             {/* sonar-project.properties */}
             <div className="bg-gradient-to-br from-slate-50 to-slate-100 rounded-xl shadow-lg p-6 border border-slate-200">
               <div className="flex items-center justify-between mb-4">
-                <h3 className="text-lg font-bold text-slate-900">sonar-project.properties</h3>
+                <h3 className="text-lg font-bold text-slate-900">
+                  sonar-project.properties
+                </h3>
                 <div className="flex gap-2">
                   <button
                     onClick={() => handleCopy(config)}
@@ -392,7 +421,9 @@ jobs:
                     )}
                   </button>
                   <button
-                    onClick={() => handleDownload(config, "sonar-project.properties")}
+                    onClick={() =>
+                      handleDownload(config, "sonar-project.properties")
+                    }
                     className="p-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors"
                     title="Download file"
                   >
@@ -409,7 +440,9 @@ jobs:
             {ciConfig && (
               <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl shadow-lg p-6 border border-blue-200">
                 <div className="flex items-center justify-between mb-4">
-                  <h3 className="text-lg font-bold text-slate-900">CI/CD Configuration</h3>
+                  <h3 className="text-lg font-bold text-slate-900">
+                    CI/CD Configuration
+                  </h3>
                   <div className="flex gap-2">
                     <button
                       onClick={() => handleCopy(ciConfig)}
@@ -419,7 +452,12 @@ jobs:
                       <Copy className="w-5 h-5 text-slate-600" />
                     </button>
                     <button
-                      onClick={() => handleDownload(ciConfig, ".github/workflows/sonarqube.yml")}
+                      onClick={() =>
+                        handleDownload(
+                          ciConfig,
+                          ".github/workflows/sonarqube.yml"
+                        )
+                      }
                       className="p-2 bg-blue-600 hover:bg-blue-700 text-white rounded-lg transition-colors"
                       title="Download file"
                     >
@@ -435,27 +473,60 @@ jobs:
 
             {/* Quick Start Instructions */}
             <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-xl shadow-lg p-6 border border-emerald-200">
-              <h3 className="text-lg font-bold text-slate-900 mb-4">📋 Quick Start</h3>
+              <h3 className="text-lg font-bold text-slate-900 mb-4">
+                📋 Quick Start
+              </h3>
               <ol className="space-y-3 text-sm text-slate-700">
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">1.</span>
-                  <span>Download the <code className="bg-white px-2 py-1 rounded text-xs">sonar-project.properties</code> file</span>
+                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">
+                    1.
+                  </span>
+                  <span>
+                    Download the{" "}
+                    <code className="bg-white px-2 py-1 rounded text-xs">
+                      sonar-project.properties
+                    </code>{" "}
+                    file
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">2.</span>
+                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">
+                    2.
+                  </span>
                   <span>Place it in your project root directory</span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">3.</span>
-                  <span>Set up your SonarQube token: <code className="bg-white px-2 py-1 rounded text-xs">export SONAR_TOKEN=your-token</code></span>
+                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">
+                    3.
+                  </span>
+                  <span>
+                    Set up your SonarQube token:{" "}
+                    <code className="bg-white px-2 py-1 rounded text-xs">
+                      export SONAR_TOKEN=your-token
+                    </code>
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">4.</span>
-                  <span>Run the scanner: <code className="bg-white px-2 py-1 rounded text-xs">sonar-scanner</code></span>
+                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">
+                    4.
+                  </span>
+                  <span>
+                    Run the scanner:{" "}
+                    <code className="bg-white px-2 py-1 rounded text-xs">
+                      sonar-scanner
+                    </code>
+                  </span>
                 </li>
                 <li className="flex items-start gap-2">
-                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">5.</span>
-                  <span>For CI/CD, add the workflow file to <code className="bg-white px-2 py-1 rounded text-xs">.github/workflows/</code></span>
+                  <span className="font-bold text-emerald-600 min-w-[1.5rem]">
+                    5.
+                  </span>
+                  <span>
+                    For CI/CD, add the workflow file to{" "}
+                    <code className="bg-white px-2 py-1 rounded text-xs">
+                      .github/workflows/
+                    </code>
+                  </span>
                 </li>
               </ol>
             </div>
