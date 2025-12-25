@@ -13,7 +13,10 @@ export default function Header() {
     { name: "Features", href: "/features" },
     { name: "How It Works", href: "/how-it-works" },
     { name: "Integrations", href: "/integrations" },
+    { name: "Rules", href: "/rules" },
     { name: "Best Practices", href: "/best-practices" },
+    { name: "Demo", href: "/demo" },
+    { name: "Troubleshooting", href: "/troubleshooting" },
   ];
 
   return (
