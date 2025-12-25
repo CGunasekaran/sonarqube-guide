@@ -1,7 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { AlertTriangle, CheckCircle, Search, Database, Server, Code, Network, Lock } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  Search,
+  Database,
+  Server,
+  Code,
+  Network,
+  Lock,
+} from "lucide-react";
 
 interface Issue {
   id: string;
@@ -231,16 +240,22 @@ export default function TroubleshootingPage() {
     },
   ];
 
-  const categories = ["all", ...new Set(issues.map(issue => issue.category))];
+  const categories = ["all", ...new Set(issues.map((issue) => issue.category))];
 
-  const filteredIssues = issues.filter(issue => {
-    const matchesSearch = searchTerm === "" || 
+  const filteredIssues = issues.filter((issue) => {
+    const matchesSearch =
+      searchTerm === "" ||
       issue.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      issue.symptoms.some(s => s.toLowerCase().includes(searchTerm.toLowerCase())) ||
-      issue.solutions.some(s => s.toLowerCase().includes(searchTerm.toLowerCase()));
-    
-    const matchesCategory = selectedCategory === "all" || issue.category === selectedCategory;
-    
+      issue.symptoms.some((s) =>
+        s.toLowerCase().includes(searchTerm.toLowerCase())
+      ) ||
+      issue.solutions.some((s) =>
+        s.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+
+    const matchesCategory =
+      selectedCategory === "all" || issue.category === selectedCategory;
+
     return matchesSearch && matchesCategory;
   });
 
@@ -287,7 +302,7 @@ export default function TroubleshootingPage() {
                 onChange={(e) => setSelectedCategory(e.target.value)}
                 className="w-full md:w-48 px-4 py-2 border border-slate-300 rounded-lg focus:ring-2 focus:ring-orange-500 focus:border-transparent"
               >
-                {categories.map(cat => (
+                {categories.map((cat) => (
                   <option key={cat} value={cat}>
                     {cat === "all" ? "All Categories" : cat}
                   </option>
@@ -300,7 +315,11 @@ export default function TroubleshootingPage() {
         {/* Results Count */}
         <div className="mb-6">
           <p className="text-slate-600">
-            Found <span className="font-semibold text-slate-900">{filteredIssues.length}</span> issue{filteredIssues.length !== 1 ? 's' : ''}
+            Found{" "}
+            <span className="font-semibold text-slate-900">
+              {filteredIssues.length}
+            </span>{" "}
+            issue{filteredIssues.length !== 1 ? "s" : ""}
           </p>
         </div>
 
@@ -315,7 +334,9 @@ export default function TroubleshootingPage() {
               >
                 <div className="p-6">
                   <div className="flex items-start gap-4 mb-4">
-                    <div className={`flex-shrink-0 w-12 h-12 bg-gradient-to-br ${issue.iconBg} rounded-xl flex items-center justify-center shadow-md`}>
+                    <div
+                      className={`flex-shrink-0 w-12 h-12 bg-gradient-to-br ${issue.iconBg} rounded-xl flex items-center justify-center shadow-md`}
+                    >
                       <Icon className="w-6 h-6 text-white" />
                     </div>
                     <div className="flex-1">
@@ -339,7 +360,10 @@ export default function TroubleshootingPage() {
                       </h4>
                       <ul className="space-y-2">
                         {issue.symptoms.map((symptom, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2 text-sm text-slate-700"
+                          >
                             <span className="text-red-600 mt-0.5">•</span>
                             <span>{symptom}</span>
                           </li>
@@ -355,7 +379,10 @@ export default function TroubleshootingPage() {
                       </h4>
                       <ul className="space-y-2">
                         {issue.causes.map((cause, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2 text-sm text-slate-700"
+                          >
                             <span className="text-orange-600 mt-0.5">•</span>
                             <span>{cause}</span>
                           </li>
@@ -371,7 +398,10 @@ export default function TroubleshootingPage() {
                       </h4>
                       <ul className="space-y-2">
                         {issue.solutions.map((solution, idx) => (
-                          <li key={idx} className="flex items-start gap-2 text-sm text-slate-700">
+                          <li
+                            key={idx}
+                            className="flex items-start gap-2 text-sm text-slate-700"
+                          >
                             <span className="text-emerald-600 mt-0.5">✓</span>
                             <span className="font-mono text-xs bg-slate-900/5 px-1 rounded">
                               {solution}
@@ -391,7 +421,9 @@ export default function TroubleshootingPage() {
         {filteredIssues.length === 0 && (
           <div className="bg-white/80 backdrop-blur-sm rounded-xl shadow-lg p-12 text-center border border-slate-200">
             <Search className="w-16 h-16 text-slate-400 mx-auto mb-4" />
-            <h3 className="text-xl font-bold text-slate-900 mb-2">No Issues Found</h3>
+            <h3 className="text-xl font-bold text-slate-900 mb-2">
+              No Issues Found
+            </h3>
             <p className="text-slate-600">
               Try adjusting your search terms or filters
             </p>
@@ -402,7 +434,8 @@ export default function TroubleshootingPage() {
         <div className="mt-12 bg-gradient-to-r from-blue-600 to-cyan-600 rounded-xl p-8 text-white shadow-lg">
           <h2 className="text-2xl font-bold mb-4">Still Need Help?</h2>
           <p className="text-blue-100 mb-6">
-            If you can't find a solution to your problem, here are some additional resources:
+            If you can't find a solution to your problem, here are some
+            additional resources:
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             <a
@@ -412,9 +445,7 @@ export default function TroubleshootingPage() {
               className="bg-white/10 hover:bg-white/20 rounded-lg p-4 transition-colors"
             >
               <h3 className="font-semibold mb-2">📚 Documentation</h3>
-              <p className="text-sm text-blue-100">
-                Official SonarQube docs
-              </p>
+              <p className="text-sm text-blue-100">Official SonarQube docs</p>
             </a>
             <a
               href="https://community.sonarsource.com/"

@@ -15,6 +15,7 @@ export default function Header() {
     { name: "Integrations", href: "/integrations" },
     { name: "Rules", href: "/rules" },
     { name: "Best Practices", href: "/best-practices" },
+    { name: "Tutorials", href: "/tutorials" },
     { name: "Demo", href: "/demo" },
     { name: "Troubleshooting", href: "/troubleshooting" },
   ];
