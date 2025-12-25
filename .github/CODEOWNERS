@@ -1,0 +1,12 @@
+# This file defines code ownership for the repository
+# All changes require approval from the specified owner
+
+# Global ownership - all files require approval from CGunasekaran
+* @CGunasekaran
+
+# Specific important files
+/.github/ @CGunasekaran
+/package.json @CGunasekaran
+/package-lock.json @CGunasekaran
+/next.config.ts @CGunasekaran
+/tsconfig.json @CGunasekaran
